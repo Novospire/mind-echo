@@ -5,8 +5,8 @@ const Landing: React.FC = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    // Kullanıcı giriş yaptı varsay → Dashboard’a yönlendir
-    navigate("/app/dashboard");
+    // Kullanıcı giriş yaptı varsay → Onboarding’e yönlendir
+    navigate("/onboarding");
   };
 
   return (
