@@ -1,67 +1,54 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useApp } from "../contexts/AppContext";
 
-const Step3: React.FC = () => {
-  const navigate = useNavigate();
+export default function Step3() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const { dispatch } = useApp();
 
-  const handleStart = () => {
-    // Burada bilgileri kaydedebilir veya API'ye gönderebilirsin
+  const handleFinish = () => {
+    if (name.trim()) {
+      localStorage.setItem("userName", name.trim());
+      dispatch({
+        type: "SET_USER",
+        payload: {
+          id: "local",
+          name: name.trim(),
+          type: "guest",
+          isAnonymous: false,
+          createdAt: new Date(),
+        },
+      });
+    }
     navigate("/app/dashboard");
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-indigo-100 via-white to-blue-100 px-4">
-      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-lg w-full">
-        {/* Progress indicator */}
-        <div className="flex justify-center mb-6">
-          <div className="flex space-x-2">
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-          </div>
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-50 to-green-50 px-4">
+      <div className="bg-white shadow-md rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-6">Son adım</h2>
+        <p className="text-center text-gray-600 mb-4">Adınızı girin</p>
 
-        <h1 className="text-2xl font-bold text-center mb-2 text-gray-800">
-          Son adım
-        </h1>
-        <p className="text-center text-gray-500 mb-8">
-          Bilgilerinizi girin
-        </p>
+        <input
+          type="text"
+          placeholder="Ad Soyad"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-green-400"
+        />
 
-        <div className="space-y-4">
-          <input
-            type="text"
-            placeholder="Adınızı girin"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
-          />
-          <input
-            type="email"
-            placeholder="E-posta (isteğe bağlı)"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-          />
-        </div>
-
-        {/* Uyarı kutusu */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-4 text-sm text-yellow-700">
-          ⚠️ Hatırlatma: Bu uygulama tıbbi teşhis koymaz ve profesyonel sağlık
-          hizmeti yerine geçmez.
+        <div className="p-3 mb-6 text-sm text-yellow-700 bg-yellow-100 rounded-lg">
+          ⚠️ Bu uygulama tıbbi teşhis koymaz ve profesyonel sağlık hizmeti yerine geçmez.
         </div>
 
         <button
-          onClick={handleStart}
-          className="w-full mt-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-medium rounded-lg shadow-md hover:opacity-90 transition"
+          onClick={handleFinish}
+          className="w-full py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-lg font-medium hover:opacity-90 transition"
         >
           Yolculuğa Başla →
         </button>
       </div>
     </div>
   );
-};
-
-export default Step3;
+}

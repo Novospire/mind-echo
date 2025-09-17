@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
 
 interface User {
   id: string;
   name: string;
-  type: 'patient' | 'family';
+  type: 'patient' | 'family' | 'guest';
   isAnonymous: boolean;
   createdAt: Date;
 }
@@ -80,6 +80,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
         settings: { ...state.settings, ...action.payload },
       };
     case 'LOGOUT':
+      localStorage.removeItem("userName");
       return { ...initialState, currentDate: new Date() };
     default:
       return state;
@@ -95,6 +96,23 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+
+  // LocalStorage'dan kullanıcıyı yükle
+  useEffect(() => {
+    const savedName = localStorage.getItem("userName");
+    if (savedName) {
+      dispatch({
+        type: "SET_USER",
+        payload: {
+          id: "local",
+          name: savedName,
+          type: "guest",
+          isAnonymous: false,
+          createdAt: new Date(),
+        },
+      });
+    }
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
