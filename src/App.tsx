@@ -16,7 +16,7 @@ import Reminders from './pages/Reminders';
 import Settings from './pages/Settings';
 
 // Yeni Onboarding ekranları
-import Onboarding from './pages/Onboarding/Onboarding';
+import Onboarding from "./pages/Onboarding";
 
 import './App.css';
 
