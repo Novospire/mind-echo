@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
+import Step1 from "./Onboarding/Step1";
+import Step2 from "./Onboarding/Step2";
+import Step3 from "./Onboarding/Step3";
+
 
 const Onboarding: React.FC = () => {
   const [step, setStep] = useState(1);
