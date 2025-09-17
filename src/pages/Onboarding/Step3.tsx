@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useApp } from "../contexts/AppContext";
+import { useApp } from "../../contexts/AppContext";
 
 export default function Step3() {
   const [name, setName] = useState("");
