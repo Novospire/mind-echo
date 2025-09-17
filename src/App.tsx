@@ -7,7 +7,6 @@ import ConsentBanner from './components/Legal/ConsentBanner';
 
 // Sayfalar
 import Landing from './pages/Landing';
-import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
 import Exercises from './pages/Exercises';
 import Tests from './pages/Tests';
@@ -15,6 +14,9 @@ import Education from './pages/Education';
 import Progress from './pages/Progress';
 import Reminders from './pages/Reminders';
 import Settings from './pages/Settings';
+
+// Yeni Onboarding ekranları
+import Onboarding from './pages/Onboarding/Onboarding';
 
 import './App.css';
 
@@ -29,8 +31,8 @@ function App() {
               {/* Açılış ekranı (Calm tarzı) */}
               <Route path="/" element={<Landing />} />
 
-              {/* Onboarding */}
-              <Route path="/welcome" element={<Welcome />} />
+              {/* Onboarding wizard */}
+              <Route path="/onboarding/*" element={<Onboarding />} />
 
               {/* Uygulama */}
               <Route path="/app" element={<Layout />}>
