@@ -7,6 +7,7 @@ import ConsentBanner from './components/Legal/ConsentBanner';
 
 // Sayfalar
 import Landing from './pages/Landing';
+import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
 import Exercises from './pages/Exercises';
 import Tests from './pages/Tests';
@@ -15,8 +16,11 @@ import Progress from './pages/Progress';
 import Reminders from './pages/Reminders';
 import Settings from './pages/Settings';
 
-// Yeni Onboarding ekranları
-import Onboarding from "./pages/Onboarding";
+// Onboarding
+import Onboarding from './pages/Onboarding';
+import Step1 from './pages/Onboarding/Step1';
+import Step2 from './pages/Onboarding/Step2';
+import Step3 from './pages/Onboarding/Step3';
 
 import './App.css';
 
@@ -31,8 +35,13 @@ function App() {
               {/* Açılış ekranı (Calm tarzı) */}
               <Route path="/" element={<Landing />} />
 
-              {/* Onboarding wizard */}
-              <Route path="/onboarding/*" element={<Onboarding />} />
+              {/* Onboarding Flow */}
+              <Route path="/onboarding" element={<Onboarding />}>
+                <Route index element={<Navigate to="/onboarding/step1" replace />} />
+                <Route path="step1" element={<Step1 />} />
+                <Route path="step2" element={<Step2 />} />
+                <Route path="step3" element={<Step3 />} />
+              </Route>
 
               {/* Uygulama */}
               <Route path="/app" element={<Layout />}>
