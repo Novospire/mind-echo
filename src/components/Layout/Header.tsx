@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../../contexts/AppContext';
-import { Leaf, Settings, LogOut, Sun } from 'lucide-react';
+import { Settings, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
@@ -14,16 +14,20 @@ const Header: React.FC = () => {
     <header className="bg-white shadow-sm border-b border-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          {/* 🔹 Logo + Yazı */}
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full">
-              <Leaf className="w-6 h-6 text-white" />
-            </div>
+            <img 
+              src="/mindechologo.png" 
+              alt="MindEcho Logo" 
+              className="h-10 w-auto"
+            />
             <div>
               <h1 className="text-xl font-bold text-gray-900">Mind Echo</h1>
               <p className="text-xs text-gray-500">Zihinsel Refah Eşlikçiniz</p>
             </div>
           </div>
 
+          {/* 🔹 Sağ taraf (kullanıcı + ayarlar + çıkış) */}
           <div className="flex items-center space-x-4">
             {state.user && (
               <div className="text-right">

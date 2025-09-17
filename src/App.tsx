@@ -4,6 +4,9 @@ import { AppProvider } from './contexts/AppContext';
 import { ConsentProvider } from './contexts/ConsentContext';
 import Layout from './components/Layout/Layout';
 import ConsentBanner from './components/Legal/ConsentBanner';
+
+// Sayfalar
+import Landing from './pages/Landing';
 import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
 import Exercises from './pages/Exercises';
@@ -12,6 +15,7 @@ import Education from './pages/Education';
 import Progress from './pages/Progress';
 import Reminders from './pages/Reminders';
 import Settings from './pages/Settings';
+
 import './App.css';
 
 function App() {
@@ -22,7 +26,13 @@ function App() {
           <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-amber-50">
             <ConsentBanner />
             <Routes>
-              <Route path="/" element={<Welcome />} />
+              {/* Açılış ekranı (Calm tarzı) */}
+              <Route path="/" element={<Landing />} />
+
+              {/* Onboarding */}
+              <Route path="/welcome" element={<Welcome />} />
+
+              {/* Uygulama */}
               <Route path="/app" element={<Layout />}>
                 <Route index element={<Navigate to="/app/dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
