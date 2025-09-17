@@ -11,7 +11,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-blue-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-blue-50">
       {step === 1 && <Step1 onNext={nextStep} />}
       {step === 2 && <Step2 onNext={nextStep} />}
       {step === 3 && <Step3 />}
